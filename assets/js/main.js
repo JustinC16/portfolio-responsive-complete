@@ -54,3 +54,43 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+
+// cookies 
+window.onload = () => { 
+        document.body.style.overflow = 'hidden';
+      }
+
+
+      let popUp = document.getElementById("cookiePopup");
+
+      document.getElementById("acceptCookie");
+
+      addEventListener("click", () => {
+        let d = new Date();
+
+        d.setMinutes(2 + d.getMinutes());
+
+        document.cookie = "myCookieName=thisIsMyCookie,\
+        expires = " + d + ";";
+
+        popUp.classList.add("hide");
+        popUp.classList.remove("show");
+      });
+
+      const checkCookie = () => {
+        let input = document.cookie.split("=");
+
+        if (input[0] == "myCookieName") {
+          popUp.classList.add("hide");
+          popUp.classList.remove("show");
+        } else {
+          popUp.classList.add("show");
+          popUp.classList.remove("hide");
+        }
+      }
+
+      window.onload = () => {
+        setTimeout(() => {
+          checkCookie();
+        }, 2000);
+      }
